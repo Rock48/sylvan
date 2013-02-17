@@ -51,4 +51,4 @@ clean:
 	-rm -f $(LIB)
 	-rm -f $(TEST_BINARIES)
 	-rm -f $(TERRAIN_OBJECTS)
-	-rm -f $(TERRAIN_BINARIES)
+	-rm -f $(TERRAIN_BINARY)
