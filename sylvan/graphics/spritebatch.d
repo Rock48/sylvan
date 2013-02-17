@@ -40,7 +40,7 @@ public:
         batches = null;
     }
 
-    void add(TextureRegion tr, ref const vec2 p) {
+    void add(TextureRegion tr, vec2 p) {
         GLuint texid = tr.m_tex.m_texid;
         Vertex v;
 
@@ -50,21 +50,25 @@ public:
         }
 
         v.pos = p;
+        //v.pos = vec2(p.x - 0.375f, p.y - 0.375f);
         v.tex = tr.m_texP1;
         v.col = vec4(1.0f, 1.0f, 1.0f, 1.0f);
         batches[texid].vertices ~= v;
 
-        v.pos = vec2(p.x + tr.m_pixDims.x, p.y);
+        v.pos = vec2(p.x + tr.m_pixDims.x + 1.0f, p.y);
+        //v.pos = vec2(p.x + tr.m_pixDims.x + 0.375f, p.y - 0.375f);
         v.tex = vec2(tr.m_texP2.x, tr.m_texP1.y);
         v.col = vec4(1.0f, 1.0f, 1.0f, 1.0f);
         batches[texid].vertices ~= v;
 
-        v.pos = p + tr.m_pixDims;
+        v.pos = p + tr.m_pixDims + vec2(1.0f, 1.0f);
+        // v.pos = p + tr.m_pixDims + vec2(0.375f, 0.375f);
         v.tex = tr.m_texP2;
         v.col = vec4(1.0f, 1.0f, 1.0f, 1.0f);
         batches[texid].vertices ~= v;
 
-        v.pos = vec2(p.x, p.y + tr.m_pixDims.y);
+        v.pos = vec2(p.x, p.y + tr.m_pixDims.y + 1.0f);
+        // v.pos = vec2(p.x - 0.375f, p.y + tr.m_pixDims.y + 0.375f);
         v.tex = vec2(tr.m_texP1.x, tr.m_texP2.y);
         v.col = vec4(1.0f, 1.0f, 1.0f, 1.0f);
         batches[texid].vertices ~= v;

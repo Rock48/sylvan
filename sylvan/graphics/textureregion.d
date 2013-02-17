@@ -14,13 +14,14 @@ public:
     this() {}
 
     this(vec2 p1, vec2 p2, Texture tex) {
-        m_pixP1 = p1;
-        m_pixP2 = p2;
+        m_pixP1 = p1; m_pixP2 = p2;
+        // m_pixP1 = vec2(p1.x + 0.375f, p1.y + 0.375f);
+        // m_pixP2 = vec2(p2.x - 0.375f, p1.y - 0.375f);
 
-        m_texP1 = vec2(p1.x / tex.m_width, p1.y / tex.m_height);
-        m_texP2 = vec2(p2.x / tex.m_width, p2.y / tex.m_height);
+        m_texP1 = vec2(m_pixP1.x / tex.m_width, m_pixP1.y / tex.m_height);
+        m_texP2 = vec2(m_pixP2.x / tex.m_width, m_pixP2.y / tex.m_height);
 
-        m_pixDims = vec2(p2.x - p1.x, p2.y - p1.y);
+        m_pixDims = vec2(m_pixP2.x - m_pixP1.x, m_pixP2.y - m_pixP1.y);
         m_texDims = vec2(m_texP2.x - m_texP1.x, m_texP2.y - m_texP1.y);
 
         m_tex = tex;
