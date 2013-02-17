@@ -139,6 +139,8 @@ int main(string[] args) {
     StopWatch sw;
     sw.start();
     auto last = sw.peek();
+    auto secondCounter = last;
+    int frameCounter = 0;
 
     running = true;
     while(running) {
@@ -156,6 +158,11 @@ int main(string[] args) {
         sw.start();
         float dt = (curr - last).to!("seconds", float)();
         last = curr;
+        if ((curr - secondCounter).to!("seconds", float)() > 1.0f) {
+            writef("%d FPS\n", frameCounter);
+            frameCounter = 0;
+            secondCounter = curr;
+        }
 
         batch.begin();
         for (int i = 0; i < balls.length; i++) {
@@ -212,6 +219,7 @@ int main(string[] args) {
         batch.draw();
 
         SDL_GL_SwapBuffers();
+        frameCounter += 1;
     }
 
     return EXIT_SUCCESS;

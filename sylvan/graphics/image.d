@@ -13,7 +13,7 @@ public:
 
     this(int width, int height) {
         m_width = width;
-        m_height = m_height;
+        m_height = height;
         m_pixels = new Color[width * height];
     }
 
